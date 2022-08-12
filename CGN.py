@@ -16,16 +16,13 @@ import scipy.sparse as sp
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import average_precision_score
 
-from gae.optimizer import OptimizerAE, OptimizerVAE
 from gae.input_data_club import load_data
-from gae.model import GCNModelAE, GCNModelVAE
 from gae.preprocessing import preprocess_graph, construct_feed_dict, sparse_to_tuple, mask_test_edges
 from igraph import *
 import igraph
 from sklearn import metrics
 from community_detection import community_detection
 from attack_edges import get_sorted_edges
-from DsAlg.main import DSA
 import random
 import itertools
 import time
@@ -34,17 +31,18 @@ import time
 
 #args
 
-datasets = "miserables" # pubmed, cora, citeseer, karate, miserables, words, nets, power, dblp, family, women
+datasets = "karate" # pubmed, cora, citeseer, karate, miserables, words, nets, power, dblp, family, women
 
 adj, features = load_data(datasets)
 cd_alg = 'multilevel' # multilevel, eigenvector, fastgreedy, infomap, label_propagation, edge_betweenness, spinglass, walktrap
 
-chrom_size = 
+chrom_size = 1 # custom
 
-group_size = 
-pc = 
-pm = 
-generation = 
+group_size = 1 # custom
+n = 0
+pc = 0.7 # custom
+pm = 0.01 # custom
+generation = 1 # custom
 
 
 
@@ -284,9 +282,9 @@ ENs = []
 strat = time.clock()
 for i in range(generation):
     if i >= 
-        pm = 
+        pm = 0.01
     if i > :
-        pm = 
+        pm = 0.01
     gf,g1 = group_fit(group,cd_alg)
 
     best_individual, best_fit = best(group, gf)
@@ -298,7 +296,7 @@ for i in range(generation):
     NMIs.append(1 - results[i][1])
     ENs.append(chrom_size * (1-results[i][1]))
     min_nmi = min(NMIs)
-    if min_nmi <= 0.6:
+    if min_nmi <= 0.9:
         break
 end = time.clock()
 rank = sorted(results, key=lambda x:x[1])
