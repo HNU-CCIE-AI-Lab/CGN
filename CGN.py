@@ -31,10 +31,9 @@ import time
 
 #args
 
-datasets = "karate" # pubmed, cora, citeseer, karate, miserables, words, nets, power, dblp, family, women
-
+datasets = "karate" # data
 adj, features = load_data(datasets)
-cd_alg = 'multilevel' # multilevel, eigenvector, fastgreedy, infomap, label_propagation, edge_betweenness, spinglass, walktrap
+cd_alg = 'multilevel' # community detection algorithms
 
 chrom_size = 1 # custom
 
@@ -107,8 +106,7 @@ def edgesets(community1,n,G):
 
 
 
-edgesin = list(G.edges)
-outedges = list(nx.non_edges(G))
+edgesin, outedges = edgesets(community1,n,G)
 def creatchrom(chrom_size):
 
     deln = random.choice(range(chrom_size))
