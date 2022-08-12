@@ -16,8 +16,8 @@ import scipy.sparse as sp
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import average_precision_score
 
-from gae.input_data_club import load_data
-from gae.preprocessing import preprocess_graph, construct_feed_dict, sparse_to_tuple, mask_test_edges
+from input_data_club import load_data
+
 from igraph import *
 import igraph
 from sklearn import metrics
