@@ -1,5 +1,5 @@
 # CGN
-This repo provides the official implementations for the experiments described on the CGN.
+This repo provides the example for the experiments of the CGN.
 # Requirements
 * python 3.65
 # Run the code
